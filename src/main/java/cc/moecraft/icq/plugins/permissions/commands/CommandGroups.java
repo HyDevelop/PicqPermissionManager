@@ -78,6 +78,22 @@ public class CommandGroups implements EverywhereCommand
                     return "无法移除, 权限组" + args.get(1) + "不存在";
                 }
             }
+            else if (args.get(0).equals("info"))
+            {
+                if (Main.getDatabase().getGroup(args.get(1)) != null)
+                {
+                    PermissionGroup group = Main.getDatabase().getGroup(args.get(1));
+
+                    return "权限组" + args.get(1) + "信息: \n" +
+                            "- 继承权限组: " + Database.groupListToNameList(group.getContainings()) + "\n" +
+                            "- 单独权限: " + Database.permissionListToNameList(group.getThisGroupPermissions()) + "\n" +
+                            "- 所有权限: " + Database.permissionListToNameList(group.getAllPermissions()) + "\n";
+                }
+                else
+                {
+                    return "无法查询, 权限组" + args.get(1) + "不存在";
+                }
+            }
         }
 
         return help(command);
