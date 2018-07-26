@@ -67,6 +67,17 @@ public class Main extends IcqPlugin
         for (String id : original) result.add(Long.valueOf(id));
         return result;
     }
+
+    /**
+     * 设置管理员用户ID列表
+     * @param admins 管理员用户ID列表
+     */
+    public void setAdmins(ArrayList<Long> admins)
+    {
+        getConfig().set("Admins", admins);
+        getConfig().save();
+    }
+
     private static Main instance;
 
     protected static Main getInstance()
