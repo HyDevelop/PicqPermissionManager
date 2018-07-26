@@ -180,4 +180,18 @@ public class Database extends Config
 
         save();
     }
+
+    public PermissionGroup getDefaultGroup()
+    {
+        return defaultGroup;
+    }
+
+    public void setDefaultGroup(PermissionGroup defaultGroup)
+    {
+        this.defaultGroup = defaultGroup;
+
+        set("DefaultGroup", defaultGroup.getGroupName());
+
+        save();
+    }
 }
