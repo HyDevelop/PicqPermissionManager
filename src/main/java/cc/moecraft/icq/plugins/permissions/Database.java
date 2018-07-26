@@ -28,6 +28,20 @@ public class Database extends Config
     }
 
     /**
+     * 向配置写入一个权限组
+     * @param group 权限组
+     */
+    public void setGroup(PermissionGroup group)
+    {
+        String currentPrefix = GROUPS_PREFIX + group.getGroupName() + ".";
+
+        set(currentPrefix + "ContainingGroups", groupListToNameList(group.getContainings()));
+        set(currentPrefix + "Permissions", permissionListToNameList(group.getThisGroupPermissions()));
+
+        save();
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
