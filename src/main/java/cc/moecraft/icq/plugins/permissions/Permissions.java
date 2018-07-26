@@ -26,4 +26,14 @@ public class Permissions
 
         return result;
     }
+
+    /**
+     * 判断一个用户是不是管理员
+     * @param qq 用户QQ号
+     * @return 是不是管理员
+     */
+    public static boolean isAdmin(long qq)
+    {
+        return Main.getInstance().getAdmins().contains(qq);
+    }
 }
