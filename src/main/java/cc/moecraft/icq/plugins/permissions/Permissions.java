@@ -13,4 +13,17 @@ import java.util.ArrayList;
  */
 public class Permissions
 {
+    /**
+     * 获取用户所有权限
+     * @param qq 用户QQ号
+     * @return 所有权限
+     */
+    public static ArrayList<Permission> getAllPermissions(long qq)
+    {
+        ArrayList<Permission> result = new ArrayList<>();
+
+        Main.getDatabase().getUserPermissionGroups(qq).forEach(group -> result.addAll(group.getAllPermissions()));
+
+        return result;
+    }
 }
