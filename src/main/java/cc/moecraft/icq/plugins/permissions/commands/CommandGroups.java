@@ -120,6 +120,21 @@ public class CommandGroups implements EverywhereCommand
                             return "无法添加, 权限" + permission.toString() + "已存在";
                         }
                     }
+                    else if (args.get(1).equals("remove"))
+                    {
+                        if (group.getThisGroupPermissions().contains(permission))
+                        {
+                            group.getThisGroupPermissions().remove(permission);
+
+                            Main.getDatabase().setGroup(group);
+
+                            return "已移除权限: " + permission.toString();
+                        }
+                        else
+                        {
+                            return "无法移除, 权限" + permission.toString() + "不存在";
+                        }
+                    }
                 }
 
         return help(command);
