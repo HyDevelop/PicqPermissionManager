@@ -14,6 +14,22 @@ import java.util.ArrayList;
 public class Permissions
 {
     /**
+     * 判断是否有权限
+     * @param qq 用户QQ号
+     * @param permission 权限
+     * @return 是否有权限
+     */
+    public static boolean hasPermission(long qq, String permission)
+    {
+        if (isAdmin(qq)) return true;
+        if (Main.getDatabase().getDefaultGroup().hasPermission(permission)) return true;
+        for (Permission eachPermission : getAllPermissions(qq))
+            if (eachPermission.hasPermission(permission)) return true;
+
+        return false;
+    }
+
+    /**
      * 获取用户所有权限
      * @param qq 用户QQ号
      * @return 所有权限
