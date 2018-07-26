@@ -109,6 +109,22 @@ public class Database extends Config
     }
 
     /**
+     * 获取用户权限组
+     * @param qq 用户QQ号
+     * @return 权限组
+     */
+    public ArrayList<PermissionGroup> getUserPermissionGroups(long qq)
+    {
+        String currentPrefix = USERS_PREFIX + qq;
+
+        ArrayList<String> permissionGroupNames = (ArrayList<String>) getStringList(currentPrefix);
+        ArrayList<PermissionGroup> result = new ArrayList<>();
+
+        permissionGroupNames.forEach(name -> result.add(getGroup(name)));
+        return result;
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
