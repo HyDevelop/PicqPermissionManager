@@ -36,4 +36,19 @@ public class Permissions
     {
         return Main.getInstance().getAdmins().contains(qq);
     }
+
+    /**
+     * 把一个用户设置为管理员
+     * @param qq 用户QQ号
+     * @param admin 是否是管理员
+     */
+    public static void setAdmin(long qq, boolean admin)
+    {
+        ArrayList<Long> admins = Main.getInstance().getAdmins();
+
+        if (admin) admins.add(qq);
+        else admins.remove(qq);
+
+        Main.getInstance().setAdmins(admins);
+    }
 }
