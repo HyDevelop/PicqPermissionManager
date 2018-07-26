@@ -136,6 +136,37 @@ public class CommandGroups implements EverywhereCommand
                         }
                     }
                 }
+                else if (args.get(0).equals("group"))
+                {
+                    PermissionGroup newGroup = Main.getDatabase().getGroup(args.get(3));
+
+                    if (newGroup == null)
+                    {
+                        return "无法编辑, 权限组" + args.get(3) + "不存在";
+                    }
+
+                    if (args.get(1).equals("add"))
+                    {
+                        if (!group.getContainings().contains(newGroup))
+                        {
+                            group.getContainings().add(newGroup);
+
+                            Main.getDatabase().setGroup(group);
+
+                            return "已添加权限组继承: " + newGroup.getGroupName();
+                        }
+                        else
+                        {
+                            return "无法添加继承, 权限组" + newGroup.getGroupName() + "已存在";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return "无法编辑, 权限组" + args.get(2) + "不存在";
+            }
+        }
 
         return help(command);
     }
