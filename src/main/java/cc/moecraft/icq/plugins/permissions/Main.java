@@ -55,6 +55,18 @@ public class Main extends IcqPlugin
                 };
     }
 
+    /**
+     * 获取配置中的管理员用户ID列表
+     * @return 管理员用户ID列表
+     */
+    public ArrayList<Long> getAdmins()
+    {
+        ArrayList<Long> result = new ArrayList<>();
+        ArrayList<String> original = new ArrayList<>(getConfig().getStringList("Admins"));
+
+        for (String id : original) result.add(Long.valueOf(id));
+        return result;
+    }
     private static Main instance;
 
     protected static Main getInstance()
