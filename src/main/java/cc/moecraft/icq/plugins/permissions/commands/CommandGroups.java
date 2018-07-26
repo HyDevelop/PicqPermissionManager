@@ -41,6 +41,11 @@ public class CommandGroups implements EverywhereCommand
     public String run(EventMessage event, User user, String command, ArrayList<String> args)
     {
         if (!Permissions.verifyAndSendText(event, user.getId(), "permissionmanager.groups")) return null;
+
+        if (args.size() == 1 && args.get(0).equalsIgnoreCase("list"))
+        {
+            return "已有的权限组: " + Main.getDatabase().getKeys("Groups");
+        }
         return help(command);
     }
 
