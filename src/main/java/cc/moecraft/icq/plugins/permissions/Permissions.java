@@ -51,4 +51,9 @@ public class Permissions
 
         Main.getInstance().setAdmins(admins);
     }
+
+    public static Database getDatabase()
+    {
+        return Main.getDatabase();
+    }
 }
