@@ -42,6 +42,21 @@ public class Database extends Config
     }
 
     /**
+     * 向配置移除一个权限组
+     * @param group 权限组
+     */
+    public void removeGroup(PermissionGroup group)
+    {
+        String currentPrefix = GROUPS_PREFIX + group.getGroupName() + ".";
+
+        set(GROUPS_PREFIX + group.getGroupName(), null);
+        set(currentPrefix + "ContainingGroups", null);
+        set(currentPrefix + "Permissions", null);
+
+        save();
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
