@@ -144,6 +144,11 @@ public class Database extends Config
     @Override
     public void readConfig()
     {
+        loadedGroups = new HashMap<>();
+
+        getKeys(GROUPS_PREFIX.replace(".", "")).forEach(key -> loadedGroups.put(key, getGroup(key)));
+
+        defaultGroup = getGroup(getString("DefaultGroup"));
     }
 
     @Override
