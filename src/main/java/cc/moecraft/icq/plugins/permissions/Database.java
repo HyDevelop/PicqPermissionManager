@@ -57,6 +57,30 @@ public class Database extends Config
     }
 
     /**
+     * 从配置获取一个权限组
+     * @param name 权限组名
+     * @return 权限组
+     */
+    public PermissionGroup getGroup(String name)
+    {
+        if (loadedGroups.containsKey(name)) return loadedGroups.get(name);
+
+        String currentPrefix = GROUPS_PREFIX + name + ".";
+
+        if (!contains(currentPrefix + "Permissions") && !contains(currentPrefix + "ContainingGroups")) return null;
+
+        PermissionGroup result = new PermissionGroup(name);
+
+        ArrayList<String> containingGroupNames = (ArrayList<String>) getStringList(currentPrefix + "ContainingGroups");
+        containingGroupNames.forEach(groupName -> result.getContainings().add(getGroup(groupName))); // 递归, 配置不好可能出现无限递归
+
+        ArrayList<String> permissionNames = (ArrayList<String>) getStringList(currentPrefix + "Permissions");
+        permissionNames.forEach(permissionName -> result.getThisGroupPermissions().add(new Permission(permissionName)));
+
+        return result;
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
