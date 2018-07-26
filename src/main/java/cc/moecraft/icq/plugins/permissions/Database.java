@@ -125,6 +125,20 @@ public class Database extends Config
     }
 
     /**
+     * 保存用户权限组
+     * @param qq 用户QQ号
+     * @param permissionGroups 用户所有的权限组
+     */
+    public void setUserPermissionGroups(long qq, ArrayList<PermissionGroup> permissionGroups)
+    {
+        String currentPrefix = USERS_PREFIX + qq;
+
+        set(currentPrefix, groupListToNameList(permissionGroups));
+
+        save();
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
