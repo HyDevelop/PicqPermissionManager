@@ -54,6 +54,32 @@ public class CommandUser implements EverywhereCommand
                     "\n- 继承权限组: " + Database.groupListToNameList(Main.getDatabase().getUserPermissionGroups(qq)) + ", " +
                     "\n- 所有权限: " + Database.permissionListToNameList(Permissions.getAllPermissions(qq));
         }
+        else if (args.size() == 3)
+        {
+            PermissionGroup permissionGroup = Main.getDatabase().getGroup(args.get(2));
+
+            if (permissionGroup == null)
+                return "无法添加, 权限组" + args.get(2) + "不存在";
+
+            AtomicBoolean haveGroup = new AtomicBoolean(false);
+
+            Main.getDatabase().getUserPermissionGroups(qq).forEach(permissionGroup1 ->
+            {
+                if (permissionGroup1.equals(permissionGroup)) haveGroup.set(true);
+            });
+
+            if (args.get(0).equals("add"))
+            {
+                if (haveGroup.get())
+                    return "添加失败, 用户" + qq + "已拥有权限组" + permissionGroup.getGroupName();
+
+                ArrayList<PermissionGroup> groups = Main.getDatabase().getUserPermissionGroups(qq);
+                groups.add(permissionGroup);
+                Main.getDatabase().setUserPermissionGroups(qq, groups);
+
+                return "添加成功, 权限组" + permissionGroup.getGroupName() + "已添加到用户" + qq;
+            }
+        }
 
         return help(command);
     }
