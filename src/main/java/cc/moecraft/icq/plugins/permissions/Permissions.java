@@ -40,6 +40,20 @@ public class Permissions
     }
 
     /**
+     * 判断是否有权限, 如果没有, 发送没有权限消息
+     * @param event 消息事件
+     * @param qq 用户QQ号
+     * @param permission 权限
+     * @return 是否有权限
+     */
+    public static boolean verifyAndSendText(EventMessage event, long qq, String permission)
+    {
+        boolean result = hasPermission(qq, permission);
+        if (!result) sendNoPermissionText(event, permission);
+        return result;
+    }
+
+    /**
      * 获取用户所有权限
      * @param qq 用户QQ号
      * @return 所有权限
