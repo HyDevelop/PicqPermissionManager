@@ -16,6 +16,8 @@ import java.util.Map;
  */
 public class Database extends Config
 {
+    private static final String GROUPS_PREFIX = "Groups.";
+    private static final String USERS_PREFIX = "Users.";
 
     public Database()
     {
