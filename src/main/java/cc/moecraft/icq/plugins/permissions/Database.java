@@ -81,6 +81,20 @@ public class Database extends Config
     }
 
     /**
+     * 权限组列表转换到权限组名字列表
+     * @param groups 权限组列表
+     * @return 权限组名字列表
+     */
+    public static ArrayList<String> groupListToNameList(ArrayList<PermissionGroup> groups)
+    {
+        ArrayList<String> result = new ArrayList<>();
+
+        groups.forEach(permissionGroup -> result.add(permissionGroup.getGroupName()));
+
+        return result;
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
