@@ -160,6 +160,21 @@ public class CommandGroups implements EverywhereCommand
                             return "无法添加继承, 权限组" + newGroup.getGroupName() + "已存在";
                         }
                     }
+                    else if (args.get(1).equals("remove"))
+                    {
+                        if (group.getContainings().contains(newGroup))
+                        {
+                            group.getContainings().remove(newGroup);
+
+                            Main.getDatabase().setGroup(group);
+
+                            return "已移除权限组继承: " + newGroup.getGroupName();
+                        }
+                        else
+                        {
+                            return "无法移除继承, 权限组" + newGroup.getGroupName() + "已存在";
+                        }
+                    }
                 }
             }
             else
