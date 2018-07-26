@@ -20,6 +20,9 @@ import java.util.ArrayList;
  */
 public class Main extends IcqPlugin
 {
+    @Getter
+    private static Database database;
+
     @Override
     public void onEnable()
     {
