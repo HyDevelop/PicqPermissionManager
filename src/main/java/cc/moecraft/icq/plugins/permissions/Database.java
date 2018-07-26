@@ -16,6 +16,9 @@ import java.util.Map;
  */
 public class Database extends Config
 {
+    private Map<String, PermissionGroup> loadedGroups;
+    private PermissionGroup defaultGroup;
+
     private static final String GROUPS_PREFIX = "Groups.";
     private static final String USERS_PREFIX = "Users.";
 
