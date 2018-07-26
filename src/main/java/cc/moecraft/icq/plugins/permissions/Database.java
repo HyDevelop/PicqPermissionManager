@@ -95,6 +95,20 @@ public class Database extends Config
     }
 
     /**
+     * 权限列表转换到权限名字列表
+     * @param permissions 权限列表
+     * @return 权限名字列表
+     */
+    public static ArrayList<String> permissionListToNameList(ArrayList<Permission> permissions)
+    {
+        ArrayList<String> result = new ArrayList<>();
+
+        permissions.forEach(permissionGroup -> result.add(permissionGroup.toString()));
+
+        return result;
+    }
+
+    /**
      * 预加载, 可以重载
      */
     @Override
