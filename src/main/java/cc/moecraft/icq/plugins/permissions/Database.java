@@ -154,5 +154,30 @@ public class Database extends Config
     @Override
     public void writeDefaultConfig()
     {
+        // 默认用户权限分3组:
+        //  default:    irc.user.regular.*
+        //  VIP:        irc.user.vip.* ( 继承 default )
+        //  Supporter:  irc.user.sup.* ( 继承 vip )
+
+        // 默认管理权限分2组:
+        //  Admin:      irc.admin.*
+        //  Manager:    irc.admin.managing.*
+
+        PermissionGroup defaultGroup = new PermissionGroup("default").setPermissions("irc.user.regular.*");
+        PermissionGroup vip = new PermissionGroup("vip").setPermissions("irc.user.vip.*").setContainings(defaultGroup);
+        PermissionGroup supporter = new PermissionGroup("supporter").setPermissions("irc.user.sup.*").setContainings(vip);
+
+        PermissionGroup admin = new PermissionGroup("admin").setPermissions("irc.admin.*");
+        PermissionGroup manager = new PermissionGroup("manager").setPermissions("irc.admin.managing.*");
+
+        setDefaultGroup(defaultGroup);
+
+        setGroup(defaultGroup);
+        setGroup(vip);
+        setGroup(supporter);
+        setGroup(admin);
+        setGroup(manager);
+
+        save();
     }
 }
