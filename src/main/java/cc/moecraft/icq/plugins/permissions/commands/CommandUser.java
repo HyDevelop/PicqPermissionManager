@@ -79,6 +79,17 @@ public class CommandUser implements EverywhereCommand
 
                 return "添加成功, 权限组" + permissionGroup.getGroupName() + "已添加到用户" + qq;
             }
+            else if (args.get(0).equals("remove"))
+            {
+                if (!haveGroup.get())
+                    return "移除失败, 用户" + qq + "没有权限组" + permissionGroup.getGroupName();
+
+                ArrayList<PermissionGroup> groups = Main.getDatabase().getUserPermissionGroups(qq);
+                groups.remove(permissionGroup);
+                Main.getDatabase().setUserPermissionGroups(qq, groups);
+
+                return "移除成功, 权限组" + permissionGroup.getGroupName() + "从用户" + qq + "移除";
+            }
         }
 
         return help(command);
