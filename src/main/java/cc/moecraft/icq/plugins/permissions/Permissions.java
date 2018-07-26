@@ -30,6 +30,16 @@ public class Permissions
     }
 
     /**
+     * 发送没有权限消息
+     * @param event 消息事件
+     * @param permission 权限
+     */
+    public static void sendNoPermissionText(EventMessage event, String permission)
+    {
+        event.respond("操作失败, 缺少权限: " + permission);
+    }
+
+    /**
      * 获取用户所有权限
      * @param qq 用户QQ号
      * @return 所有权限
