@@ -47,6 +47,13 @@ public class CommandUser implements EverywhereCommand
         Long qq = CommandUtils.getQqWithStringAndSendMessage(event, args.get(1));
         if (qq == null) return null;
 
+        if (args.get(0).equals("info"))
+        {
+            return "用户" + args.get(1) + "信息: " +
+                    "\n- 管理员: " + Permissions.isAdmin(qq) + ", " +
+                    "\n- 继承权限组: " + Database.groupListToNameList(Main.getDatabase().getUserPermissionGroups(qq)) + ", " +
+                    "\n- 所有权限: " + Database.permissionListToNameList(Permissions.getAllPermissions(qq));
+        }
 
         return help(command);
     }
