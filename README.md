@@ -2,6 +2,33 @@
 
 <br>
 
+#### Maven导入:
+
+没有添加JitPack的Repo的话首先添加Repo, 在pom里面把这些粘贴进去:
+
+```xml
+<repositories>
+    <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+然后添加这个库:
+
+```xml
+<dependency>
+    <groupId>com.github.HyDEV-Plugins</groupId>
+	  <artifactId>PicqPermissionManager</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+然后ReImport之后就导入好了!
+
+<br>
+
 #### 指令:
 
 ```
@@ -21,6 +48,8 @@
 !usp add [qq|@] [name]    把用户加入权限组
 !usp remove [qq|@] [name] 把用户从权限组移除
 ```
+
+<br>
 
 #### 调用:
 
