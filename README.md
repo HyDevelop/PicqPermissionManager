@@ -2,6 +2,15 @@
 
 <br>
 
+#### 安装插件:
+
+1. [下载预构建JAR](https://github.com/HyDEV-Plugins/PicqPermissionManager/releases)
+2. 放到`运行目录/plugins/`目录下.
+3. 重启Picq插件管理服务器.
+4. 完成!
+
+<br>
+
 #### Maven导入:
 
 没有添加JitPack的Repo的话首先添加Repo, 在pom里面把这些粘贴进去:
