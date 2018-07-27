@@ -21,3 +21,17 @@
 !usp add [qq|@] [name]    把用户加入权限组
 !usp remove [qq|@] [name] 把用户从权限组移除
 ```
+
+#### 调用:
+
+执行指令的时候判断发送指令的用户有没有权限, 如果没有权限就发送缺少权限的消息:
+
+```java
+if (!Permissions.verifyAndSendText(事件, QQ号, "权限节点")) return null;
+```
+
+例子:
+
+```java
+if (!Permissions.verifyAndSendText(event, user.getId(), "permissionmanager.usp")) return null;
+```
